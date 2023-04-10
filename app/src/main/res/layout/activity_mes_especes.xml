@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Espèce 1 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/species_name_textview_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/species_imageview_1"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/species_name_textview_1"
+            android:paddingTop="16dp"
+            android:scaleType="centerCrop"/>
+
+    </RelativeLayout>
+
+    <!-- Espèce 2 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/species_name_textview_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/species_imageview_2"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/species_name_textview_2"
+            android:paddingTop="16dp"
+            android:scaleType="centerCrop"/>
+
+    </RelativeLayout>
+
+    <!-- Espèce 3 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/species_name_textview_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/species_imageview_3"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/species_name_textview_3"
+            android:paddingTop="16dp"
+            android:scaleType="centerCrop"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
