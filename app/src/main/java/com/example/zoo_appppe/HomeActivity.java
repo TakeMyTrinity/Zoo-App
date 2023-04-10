@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,17 +13,12 @@ import android.widget.Toast;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-
-import okhttp3.HttpUrl;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
 public class HomeActivity extends AppCompatActivity {
 
-    Button logout;
+    private Button logoutButton;
+    private TextView userNameTextView;
+    private TextView userMatriculeTextView;
+    private ImageView profileImageView;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -39,27 +32,25 @@ public class HomeActivity extends AppCompatActivity {
         // get login + set text on the view
         String login = bundle.getString("identifiant");
 
-        TextView usernameView = findViewById(R.id.user_name);
-
-        usernameView.setText(login);
+        userNameTextView = findViewById(R.id.user_name);
+        userNameTextView.setText(login);
 
         // get matricule + set text on the view
         String matricule = bundle.getString("matricule");
 
-        TextView matriculeView = findViewById(R.id.user_matricule);
-
-        matriculeView.setText("Votre matricule est le : " + matricule + ".");
+        userMatriculeTextView = findViewById(R.id.user_matricule);
+        userMatriculeTextView.setText("Votre matricule est le : " + matricule + ".");
 
         // get image + set image on the view
         String image = bundle.getString("image");
 
-        ImageView imageView = findViewById(R.id.profile_image);
+        profileImageView = findViewById(R.id.profile_image);
 
-        Picasso.get().load(image).into(imageView, new Callback() {
+        Picasso.get().load(image).into(profileImageView, new Callback() {
             @Override
             public void onSuccess() {
                 // L'image a été chargée avec succès
-                imageView.setVisibility(ImageView.VISIBLE);
+                profileImageView.setVisibility(ImageView.VISIBLE);
             }
 
             @Override
@@ -69,23 +60,21 @@ public class HomeActivity extends AppCompatActivity {
                         "l'image", Toast.LENGTH_SHORT).show();
 
                 // Utiliser une image de remplacement
-                imageView.setImageResource(R.drawable.placeholder);
+                profileImageView.setImageResource(R.drawable.placeholder);
             }
         });
 
         // mes espèces button
-        Button mesEspeces = findViewById(R.id.btn_mes_especes);
-
-        mesEspeces.setOnClickListener(v -> {
+        Button mesEspecesButton = findViewById(R.id.btn_mes_especes);
+        mesEspecesButton.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, MesEspecesActivity.class);
             intent.putExtra("matricule", matricule);
             startActivity(intent);
         });
 
         // Button logout
-        logout = findViewById(R.id.btn_logout);
-
-        logout.setOnClickListener(v -> {
+        logoutButton = findViewById(R.id.btn_logout);
+        logoutButton.setOnClickListener(v -> {
             // go back to login page
             Intent intent = new Intent(HomeActivity.this, MainActivity.class);
             startActivity(intent);
@@ -93,4 +82,13 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Unregister views to prevent memory leaks
+        userNameTextView = null;
+        userMatriculeTextView = null;
+        profileImageView = null;
+        logoutButton = null;
+    }
 }
