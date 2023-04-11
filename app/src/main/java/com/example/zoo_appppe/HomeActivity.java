@@ -72,6 +72,14 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // Placement button
+        Button placementButton = findViewById(R.id.menu_item_2);
+        placementButton.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, PlacementActivity.class);
+            intent.putExtra("matricule", matricule);
+            startActivity(intent);
+        });
+
         // Button logout
         logoutButton = findViewById(R.id.btn_logout);
         logoutButton.setOnClickListener(v -> {

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ZooAppppe"
         tools:targetApi="tiramisu">
         <activity
+            android:name=".PlacementActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailsEspeceActivity"
             android:exported="false" />
         <activity

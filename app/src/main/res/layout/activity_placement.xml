@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- TextView pour le premier titre -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choisissez votre espèce"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <!-- Spinner pour le premier titre -->
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- TextView pour le deuxième titre -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choisissez son enclos"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <!-- Spinner pour le deuxième titre -->
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- Bouton de validation -->
+    <Button
+        android:id="@+id/valider_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Valider"/>
+
+</LinearLayout>
