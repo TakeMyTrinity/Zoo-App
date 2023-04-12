@@ -1,9 +1,16 @@
 package com.example.zoo_appppe;
 
+
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -13,7 +20,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -66,22 +75,23 @@ public class PlacementActivity extends AppCompatActivity {
                         // response in json array
                         JSONArray jsonArray = new JSONArray(responseBody);
 
-                        // create list of species names
-                        List<String> speciesNamesList = new ArrayList<>();
+                        // create map of species names to IDs
+                        Map<String, String> speciesIdMap = new HashMap<>();
                         for (int i = 0; i < jsonArray.length(); i++) {
                             try {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                // get species name
+                                // get species name and ID
                                 String speciesName = jsonObject.getString("espece_nom");
-                                // add to list
-                                speciesNamesList.add(speciesName);
+                                String speciesId = jsonObject.getString("id_espece");
+                                // add to map
+                                speciesIdMap.put(speciesName, speciesId);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
 
                         // populate spinner with species names
-                        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(PlacementActivity.this, android.R.layout.simple_spinner_item, speciesNamesList);
+                        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(PlacementActivity.this, android.R.layout.simple_spinner_item, new ArrayList<>(speciesIdMap.keySet()));
                         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         Spinner spinner = findViewById(R.id.spinner1);
                         spinner.setAdapter(spinnerArrayAdapter);
@@ -126,14 +136,18 @@ public class PlacementActivity extends AppCompatActivity {
                         // get records array
                         JSONArray jsonArray = jsonObject.getJSONArray("records");
 
-                        // create list of enclos names
+                        // create list of enclos names and IDs
                         List<String> enclosNamesList = new ArrayList<>();
+                        Map<String, String> enclosIdMap = new HashMap<>();
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject enclosObject = jsonArray.getJSONObject(i);
                             // get enclos name
                             String enclosName = enclosObject.getString("nom");
-                            // add to list
+                            // get enclos ID
+                            String enclosId = enclosObject.getString("id");
+                            // add name and ID to lists
                             enclosNamesList.add(enclosName);
+                            enclosIdMap.put(enclosName, enclosId);
                         }
 
                         // populate spinner with enclos names
