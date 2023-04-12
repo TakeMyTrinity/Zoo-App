@@ -5,19 +5,30 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Titre de l'application -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modifier l'emplacement de vos espèces"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
     <!-- TextView pour le premier titre -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Choisissez votre espèce"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:paddingTop="32dp" />
 
     <!-- Spinner pour le premier titre -->
     <Spinner
         android:id="@+id/spinner1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"/>
 
     <!-- TextView pour le deuxième titre -->
     <TextView
